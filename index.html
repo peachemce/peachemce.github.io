@@ -61,16 +61,14 @@
       }
       // Open the URL in a new window
       window.open(pages[currentIndex++], '_blank');
+      // Call redirectToNextPage again after 3 seconds
+      setTimeout(redirectToNextPage, 3000);
     }
 
     // Call redirectToNextPage initially
     redirectToNextPage();
-
-    // Set timeout to call redirectToNextPage after 3 seconds
-    setTimeout(redirectLoop, 3000);
   };
 </script>
-
 
 
 
