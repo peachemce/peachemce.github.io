@@ -57,12 +57,10 @@
 
     function redirectToNextPage() {
       if (currentIndex >= pages.length) {
-        currentIndex = 0; // Reset index when it reaches the end
+        return; // Stop the loop when all pages are visited
       }
       // Open the URL in a new window
       window.open(pages[currentIndex++], '_blank');
-      // Call redirectToNextPage again after 3 seconds
-      setTimeout(redirectToNextPage, 3000);
     }
 
     // Call redirectToNextPage initially
