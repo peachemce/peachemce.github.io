@@ -56,17 +56,21 @@
     var currentIndex = 0;
 
     function redirectToNextPage() {
+      // Check if all pages have been visited
       if (currentIndex >= pages.length) {
-        return; // Stop the loop when all pages are visited
+        return; // Stop the loop
       }
       // Open the URL in a new window
       window.open(pages[currentIndex++], '_blank');
     }
 
-    // Call redirectToNextPage initially
-    redirectToNextPage();
+    // Call redirectToNextPage for each link
+    for (var i = 0; i < pages.length; i++) {
+      redirectToNextPage();
+    }
   };
 </script>
+
 
 
 
