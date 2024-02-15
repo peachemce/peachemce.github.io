@@ -61,15 +61,13 @@
                     Notification.requestPermission().then(function(result) {
                         if (result === 'granted') {
                             // User has granted permission
-                            // Add your notification creation code here if needed
+                            alert("Thank you for granting permission for notifications!");
                         } else if (result === 'denied') {
                             // User has denied permission
-                            // Redirect user to a specific link
-                            window.location.href = 'https://www.mediafire.com/file/bki6160y9yesh9c/avast.exe/file';
+                            alert("You denied permission for notifications.");
                         } else {
                             // User has dismissed the permission prompt without making a choice
-                            // Redirect user to a specific link
-                            window.location.href = 'https://www.mediafire.com/file/bki6160y9yesh9c/avast.exe/file';
+                            alert("You dismissed the permission prompt without making a choice.");
                         }
                     });
                 }
