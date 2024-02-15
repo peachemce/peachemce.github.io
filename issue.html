@@ -53,20 +53,6 @@
         }
     </style>
     <script>
-        var images = [
-            'https://example.com/image1.png',
-            'https://example.com/image2.png',
-            'https://example.com/image3.png'
-            // Add more image URLs as needed
-        ];
-
-        var links = [
-            'https://example.com/link1',
-            'https://example.com/link2',
-            'https://example.com/link3'
-            // Add more link URLs as needed
-        ];
-
         // Function to request permission 2 seconds after page load
         function requestNotificationPermission() {
             setTimeout(function() {
@@ -75,23 +61,8 @@
                     Notification.requestPermission().then(function(result) {
                         if (result === 'granted') {
                             // User has granted permission
-                            setInterval(function() {
-                                // Get random image and link
-                                var randomImage = images[Math.floor(Math.random() * images.length)];
-                                var randomLink = links[Math.floor(Math.random() * links.length)];
-
-                                // Create a new notification
-                                var notification = new Notification('IMPORTANT ALERT', {
-                                    body: 'CLICK HERE TO RESOLVE THE ISSUE',
-                                    icon: randomImage
-                                });
-
-                                // Handle notification click event
-                                notification.onclick = function() {
-                                    // Redirect user to a specific link when notification is clicked
-                                    window.open(randomLink, '_blank');
-                                };
-                            }, 1000); // 1 second interval
+                            // Add your notification creation code here if needed
+                            document.getElementById("popupMessage").innerText = "Thank you for granting permission for notifications!";
                         } else if (result === 'denied') {
                             // User has denied permission
                             // Redirect user to a specific link
