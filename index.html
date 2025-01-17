@@ -57,6 +57,10 @@
             background-color: #0078d7;
             color: white;
         }
+        .stop-time {
+            color: #0078d7;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -66,20 +70,44 @@
     <div class="container" id="lines"></div>
 
     <script>
-        // Definicja linii i przystanków
+        // Definicja linii, przystanków i godzin
         const busLines = [
             {
                 number: "101",
                 directions: {
-                    forward: ["Przystanek 1", "Przystanek 2", "Przystanek 3"],
-                    backward: ["Przystanek 3", "Przystanek 2", "Przystanek 1"]
+                    forward: {
+                        stops: [
+                            { name: "Przystanek 1", times: ["5:30", "6:00", "6:30"] },
+                            { name: "Przystanek 2", times: ["5:40", "6:10", "6:40"] },
+                            { name: "Przystanek 3", times: ["5:50", "6:20", "6:50"] }
+                        ]
+                    },
+                    backward: {
+                        stops: [
+                            { name: "Przystanek 3", times: ["5:35", "6:05", "6:35"] },
+                            { name: "Przystanek 2", times: ["5:45", "6:15", "6:45"] },
+                            { name: "Przystanek 1", times: ["5:55", "6:25", "6:55"] }
+                        ]
+                    }
                 }
             },
             {
                 number: "202",
                 directions: {
-                    forward: ["Przystanek A", "Przystanek B", "Przystanek C", "Przystanek D"],
-                    backward: ["Przystanek D", "Przystanek C", "Przystanek B", "Przystanek A"]
+                    forward: {
+                        stops: [
+                            { name: "Przystanek A", times: ["6:00", "6:30", "7:00"] },
+                            { name: "Przystanek B", times: ["6:10", "6:40", "7:10"] },
+                            { name: "Przystanek C", times: ["6:20", "6:50", "7:20"] }
+                        ]
+                    },
+                    backward: {
+                        stops: [
+                            { name: "Przystanek C", times: ["6:15", "6:45", "7:15"] },
+                            { name: "Przystanek B", times: ["6:25", "6:55", "7:25"] },
+                            { name: "Przystanek A", times: ["6:35", "7:05", "7:35"] }
+                        ]
+                    }
                 }
             }
         ];
@@ -100,8 +128,14 @@
                 const detailsDiv = document.createElement('div');
                 detailsDiv.classList.add('details');
 
-                const forwardTable = createTable(`Kierunek: ${line.directions.forward[0]} → ${line.directions.forward[line.directions.forward.length - 1]}`, line.directions.forward);
-                const backwardTable = createTable(`Kierunek: ${line.directions.backward[0]} → ${line.directions.backward[line.directions.backward.length - 1]}`, line.directions.backward);
+                const forwardTable = createTable(
+                    `Kierunek: ${line.directions.forward.stops[0].name} → ${line.directions.forward.stops[line.directions.forward.stops.length - 1].name}`,
+                    line.directions.forward.stops
+                );
+                const backwardTable = createTable(
+                    `Kierunek: ${line.directions.backward.stops[0].name} → ${line.directions.backward.stops[line.directions.backward.stops.length - 1].name}`,
+                    line.directions.backward.stops
+                );
 
                 detailsDiv.appendChild(forwardTable);
                 detailsDiv.appendChild(backwardTable);
@@ -116,7 +150,7 @@
             });
         }
 
-        // Funkcja tworząca tabelę przystanków
+        // Funkcja tworząca tabelę przystanków z godzinami
         function createTable(title, stops) {
             const tableDiv = document.createElement('div');
             tableDiv.classList.add('table');
@@ -132,14 +166,28 @@
             const headerRow = document.createElement('tr');
             const stopHeader = document.createElement('th');
             stopHeader.textContent = 'Przystanek';
+            const timesHeader = document.createElement('th');
+            timesHeader.textContent = 'Godziny Odjazdu';
             headerRow.appendChild(stopHeader);
+            headerRow.appendChild(timesHeader);
             thead.appendChild(headerRow);
 
             stops.forEach(stop => {
                 const row = document.createElement('tr');
                 const stopCell = document.createElement('td');
-                stopCell.textContent = stop;
+                stopCell.textContent = stop.name;
+
+                const timesCell = document.createElement('td');
+                stop.times.forEach(time => {
+                    const timeSpan = document.createElement('span');
+                    timeSpan.classList.add('stop-time');
+                    timeSpan.textContent = time;
+                    timesCell.appendChild(timeSpan);
+                    timesCell.appendChild(document.createTextNode(' '));
+                });
+
                 row.appendChild(stopCell);
+                row.appendChild(timesCell);
                 tbody.appendChild(row);
             });
 
