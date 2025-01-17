@@ -21,18 +21,41 @@
             margin: 20px;
         }
         .line {
-            margin-bottom: 20px;
-        }
-        .line h2 {
-            color: #0078d7;
-            margin-bottom: 10px;
-        }
-        .stop {
             padding: 10px;
-            background: white;
-            margin: 5px 0;
+            background-color: white;
+            margin: 10px 0;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .line h2 {
+            margin: 0;
+            color: #0078d7;
+        }
+        .details {
+            display: none;
+            margin-top: 10px;
+        }
+        .table {
+            margin-bottom: 20px;
+        }
+        .table h3 {
+            margin: 0;
+            margin-bottom: 5px;
+            color: #0078d7;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #0078d7;
+            color: white;
         }
     </style>
 </head>
@@ -47,15 +70,21 @@
         const busLines = [
             {
                 number: "101",
-                stops: ["Przystanek 1", "Przystanek 2", "Przystanek 3"]
+                directions: {
+                    forward: ["Przystanek 1", "Przystanek 2", "Przystanek 3"],
+                    backward: ["Przystanek 3", "Przystanek 2", "Przystanek 1"]
+                }
             },
             {
                 number: "202",
-                stops: ["Przystanek A", "Przystanek B", "Przystanek C", "Przystanek D"]
+                directions: {
+                    forward: ["Przystanek A", "Przystanek B", "Przystanek C", "Przystanek D"],
+                    backward: ["Przystanek D", "Przystanek C", "Przystanek B", "Przystanek A"]
+                }
             }
         ];
 
-        // Funkcja renderująca linie i przystanki
+        // Funkcja renderująca linie
         function renderLines() {
             const linesContainer = document.getElementById('lines');
             linesContainer.innerHTML = '';
@@ -68,19 +97,57 @@
                 lineHeader.textContent = `Linia ${line.number}`;
                 lineDiv.appendChild(lineHeader);
 
-                const stopsContainer = document.createElement('div');
-                stopsContainer.classList.add('stops');
+                const detailsDiv = document.createElement('div');
+                detailsDiv.classList.add('details');
 
-                line.stops.forEach(stop => {
-                    const stopDiv = document.createElement('div');
-                    stopDiv.classList.add('stop');
-                    stopDiv.textContent = stop;
-                    stopsContainer.appendChild(stopDiv);
+                const forwardTable = createTable(`Kierunek: ${line.directions.forward[0]} → ${line.directions.forward[line.directions.forward.length - 1]}`, line.directions.forward);
+                const backwardTable = createTable(`Kierunek: ${line.directions.backward[0]} → ${line.directions.backward[line.directions.backward.length - 1]}`, line.directions.backward);
+
+                detailsDiv.appendChild(forwardTable);
+                detailsDiv.appendChild(backwardTable);
+                lineDiv.appendChild(detailsDiv);
+
+                lineDiv.addEventListener('click', () => {
+                    const isVisible = detailsDiv.style.display === 'block';
+                    detailsDiv.style.display = isVisible ? 'none' : 'block';
                 });
 
-                lineDiv.appendChild(stopsContainer);
                 linesContainer.appendChild(lineDiv);
             });
+        }
+
+        // Funkcja tworząca tabelę przystanków
+        function createTable(title, stops) {
+            const tableDiv = document.createElement('div');
+            tableDiv.classList.add('table');
+
+            const tableTitle = document.createElement('h3');
+            tableTitle.textContent = title;
+            tableDiv.appendChild(tableTitle);
+
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            const headerRow = document.createElement('tr');
+            const stopHeader = document.createElement('th');
+            stopHeader.textContent = 'Przystanek';
+            headerRow.appendChild(stopHeader);
+            thead.appendChild(headerRow);
+
+            stops.forEach(stop => {
+                const row = document.createElement('tr');
+                const stopCell = document.createElement('td');
+                stopCell.textContent = stop;
+                row.appendChild(stopCell);
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            tableDiv.appendChild(table);
+
+            return tableDiv;
         }
 
         // Renderowanie linii przy ładowaniu strony
